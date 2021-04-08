@@ -26,3 +26,9 @@ Designing a database of online clothing stores.
 8. Бренд выпускает хотя бы одну вещь. Каждую вещь, так как она уникальна может 
 продавать только один бренд.
 
+
+### Logical model
+
+
+![tag2](images/LogicalModel.png "Logical model of the database").
+
