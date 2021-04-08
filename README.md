@@ -29,6 +29,8 @@ Designing a database of online clothing stores.
 
 ### Logical model
 
+БД находится в 3-ей нормальной форме. Таблица `employee_position` является 
+версионной типа `SCD2`. 
 
 ![tag2](images/LogicalModel.png "Logical model of the database").
 
