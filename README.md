@@ -102,9 +102,9 @@ Designing a database of online clothing stores.
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | employee_id | Уникальный идентификатор сотрудника | Bigserial| Not Null, Unique | + | |
-| valid_from_dttm | Дата и время с которого занимается должность  |  Timestamp | Not Null |  | Delivery Point|
+| valid_from_dt | Дата с которого занимается должность  |  Date | Not Null |  | Delivery Point|
 | position_id  | Уникальный идентификатор должности в табличке всех должностей |  Bigserial | Not Null| | Position Dict|
-| valid_to_dttm | Дата и время до которого занималась должность | Timestamp | Not Null |  | |
+| valid_to_dt | Дата до которого занималась должность | Date | Not Null |  | |
 | salary_amt  | Заработная плата сотрудника | Int |  | | |
 
 ## Position Dict
