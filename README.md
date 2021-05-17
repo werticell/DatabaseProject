@@ -74,9 +74,9 @@ Designing a database of online clothing stores.
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | order_id | Уникальный идентификатор заказа | Bigserial| Not Null, Unique | + | |
-| employee_id | Уникальный идентификатор сотрудника выдавшего заказ |  Bigserial | Not Null |  | Employee|
-| store_id  | Уникальный идентификатор магазина, в котором совершена покупка |  Bigserial | Not Null  | | Store|
-| customer_id | Уникальный идентификатор покупателя, сделавшего заказ|  Bigserial| Not Null |  |Customer|
+| employee_id | Уникальный идентификатор сотрудника выдавшего заказ |  BigInt | Not Null, >0 |  | Employee|
+| store_id  | Уникальный идентификатор магазина, в котором совершена покупка |  BigInt | Not Null, >0  | | Store|
+| customer_id | Уникальный идентификатор покупателя, сделавшего заказ|  BigInt | Not Null, >0 |  |Customer|
 | delivery_dttm | Дата и время доставки в пункт выдачи заказа | Timestamp |  | | |
 | purchase_dttm | Дата и время выкупа заказа из пункта выдачи | Timestamp |  | | |
 
@@ -91,33 +91,23 @@ Designing a database of online clothing stores.
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | employee_id | Уникальный идентификатор сотрудника | Bigserial| Not Null, Unique | + | |
-| delivery_point_id | Уникальный идентификатор пункта выдачи, в котором работает сотрудник|  Bigserial | Not Null  |  | Delivery Point|
+| valid_from_dttm | Дата с которого занимается должность  |  Timestamp | Not Null | + | |
+| delivery_point_id | Уникальный идентификатор пункта выдачи, в котором работает сотрудник|  BigInt | Not Null, >0  |  | Delivery Point|
 | employee_nm | Имя сотрудника | Varchar(40) | Not Null |  | |
 | employee_surname  | Фамилия сотрудника | Varchar(40) | Not Null | | |
 | employee_patronymic | Отчество сотрудника| Varchar(40) |  |  | |
+| valid_to_dttm | Дата до которого занималась должность | Timestamp | Not Null |  | |
 | birth_dt | Дата рождения сотрудника | Date | Not Null | | |
 | email | Email адрес сотрудника | Varchar(50) | Not Null | | |
-
-## Employee position
-| Название | Описание | Тип данных | Ограничение | PK | FK |
-|------------| --------| ------------|------------ | ------------| ------------|
-| employee_id | Уникальный идентификатор сотрудника | Bigserial| Not Null, Unique | + | |
-| valid_from_dt | Дата с которого занимается должность  |  Date | Not Null |  | Delivery Point|
-| position_id  | Уникальный идентификатор должности в табличке всех должностей |  Bigserial | Not Null| | Position Dict|
-| valid_to_dt | Дата до которого занималась должность | Date | Not Null |  | |
 | salary_amt  | Заработная плата сотрудника | Int |  | | |
+| position_nm  | Название должности | Varchar(100) | Not Null| | |
 
-## Position Dict
-| Название | Описание | Тип данных | Ограничение | PK | FK |
-|------------| --------| ------------|------------ | ------------| ------------|
-| position_id | Уникальный идентификатор должности | Bigserial | Not Null, Unique | + | |
-| position_nm | Название должности  |  Varchar(100) | Not Null |  | |
 
 ## Delivery Point
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | delivery_point_id | Уникальный идентификатор пункта выдачи |  Bigserial | Not Null, Unique | + | |
-| store_id | Уникальный идентификатор магазина, к которому принадлежит пункт выдачи | Bigserial | Not Null |  | Store|
+| store_id | Уникальный идентификатор магазина, к которому принадлежит пункт выдачи | BigInt | Not Null, >0 |  | Store|
 | address  | Адрес пункта выдачи | Varchar(40) | | | |
 | city | Город, в котором находится пункт выдачи| Varchar(40) |  |  | |
 | phone_no | Телефон пункта доставки | Int |  | | |
@@ -143,7 +133,7 @@ Designing a database of online clothing stores.
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | clothes_id | Уникальный идентификатор вещи| Bigserial| Not Null, Unique | + | |
-| brand_id | Уникальный идентификатор бренда, выпустившего эту вещь|  Bigserial | Not Null  |  | Brand|
+| brand_id | Уникальный идентификатор бренда, выпустившего эту вещь|  BigInt | Not Null, >0  |  | Brand|
 | clothes_nm | Название вещи | Varchar(100) | Not Null |  | |
 | category_nm  | Категория одежды, к которой принадлежит вещь | Varchar(40) | Not Null | | |
 | color_nm | Название цвета вещи| Varchar(40) |  |  | |
