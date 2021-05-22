@@ -87,20 +87,25 @@ Designing a database of online clothing stores.
 | clothes_id | Уникальный идентификатор вещи, которая есть в заказе |  Bigserial | Not Null | + | Clothes|
 | item_count | Количество таких вещей в данном заказе | Int | Not Null |  | |
 
-## Employee
+## Employee_version
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
-| employee_id | Уникальный идентификатор сотрудника | Bigserial| Not Null, Unique | + | |
+| employee_id | Уникальный идентификатор сотрудника | Bigserial| Not Null, Unique | + | Employee |
 | valid_from_dttm | Дата с которого занимается должность  |  Timestamp | Not Null | + | |
 | delivery_point_id | Уникальный идентификатор пункта выдачи, в котором работает сотрудник|  BigInt | Not Null, >0  |  | Delivery Point|
 | employee_nm | Имя сотрудника | Varchar(40) | Not Null |  | |
 | employee_surname  | Фамилия сотрудника | Varchar(40) | Not Null | | |
 | employee_patronymic | Отчество сотрудника| Varchar(40) |  |  | |
 | valid_to_dttm | Дата до которого занималась должность | Timestamp | Not Null |  | |
-| birth_dt | Дата рождения сотрудника | Date | Not Null | | |
 | email | Email адрес сотрудника | Varchar(50) | Not Null | | |
 | salary_amt  | Заработная плата сотрудника | Int |  | | |
 | position_nm  | Название должности | Varchar(100) | Not Null| | |
+
+## Employee
+| Название | Описание | Тип данных | Ограничение | PK | FK |
+|------------| --------| ------------|------------ | ------------| ------------|
+| employee_id | Уникальный идентификатор сотрудника | Bigserial | Not Null, Unique | + | |
+| birth_dt | Дата рождения сотрудника | Date | Not Null | | |
 
 
 ## Delivery Point
@@ -149,10 +154,3 @@ Designing a database of online clothing stores.
 | head_designer_surname | Фамилия главного дизайнера| Varchar(40) |Not Null   |  | |
 | head_designer_patronymic | Отчество главного дизайнера| Varchar(40) |  |  | |
 | foundation_dt | Дата основания бренда | Date |  | | |
-
-
-
-
-
-
-
