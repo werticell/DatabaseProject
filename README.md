@@ -66,7 +66,6 @@ Designing a database of online clothing stores.
 | customer_patronymic | Реальное отчество пользователя| Varchar(40) |  |  | |
 | birth_dt | Дата рождения пользователя | Date |  | | |
 | email | Email адрес пользователя | Varchar(50) | Not Null | | |
-| overall_transactions_amt | Суммарная цена купленных товаров | Bigint | | | |
 | advertising_subscribe_flg | Флаг означающий подписан ли пользователь на рекламную рассылку | Boolean |  | ||
 
 
@@ -74,13 +73,14 @@ Designing a database of online clothing stores.
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | order_id | Уникальный идентификатор заказа | Bigserial| Not Null, Unique | + | |
-| employee_id | Уникальный идентификатор сотрудника выдавшего заказ |  BigInt | Not Null, >0 |  | Employee|
+| delivery_point_id | Уникальный идентификатор точки доставки в которую была оформлена доставка |  BigInt | Not Null, >0 |  | Delivery Point|
 | store_id  | Уникальный идентификатор магазина, в котором совершена покупка |  BigInt | Not Null, >0  | | Store|
 | customer_id | Уникальный идентификатор покупателя, сделавшего заказ|  BigInt | Not Null, >0 |  |Customer|
 | delivery_dttm | Дата и время доставки в пункт выдачи заказа | Timestamp |  | | |
-| purchase_dttm | Дата и время выкупа заказа из пункта выдачи | Timestamp |  | | |
+| purchase_dttm | Дата и время покупки заказа | Timestamp |  | | |
+| buyoutt_flg | Флаг, который говорит был ли выкуплен заказ | Boolean |  | | |
 
-## Clothes in order
+## Clothes_x_order
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | order_id | Уникальный идентификатор заказа, в котором есть такая вещь | Bigserial | Not Null | + | Store|
@@ -113,9 +113,9 @@ Designing a database of online clothing stores.
 |------------| --------| ------------|------------ | ------------| ------------|
 | delivery_point_id | Уникальный идентификатор пункта выдачи |  Bigserial | Not Null, Unique | + | |
 | store_id | Уникальный идентификатор магазина, к которому принадлежит пункт выдачи | BigInt | Not Null, >0 |  | Store|
-| address  | Адрес пункта выдачи | Varchar(40) | | | |
-| city | Город, в котором находится пункт выдачи| Varchar(40) |  |  | |
-| phone_no | Телефон пункта доставки | Int |  | | |
+| street_nm  | Улица адреса пункта выдачи | Varchar(40) | | | |
+| city_nm | Город, в котором находится пункт выдачи| Varchar(40) |  |  | |
+| phone_no | Телефон пункта доставки | Varchar(15) |  | | |
 
 
 ## Store
@@ -124,10 +124,10 @@ Designing a database of online clothing stores.
 | store_id | Уникальный идентификатор магазина | Bigserial| Not Null, Unique | + | |
 | store_nm | Название магазина | Varchar(60) | Not Null |  | |
 | create_dt  | Дата создания магазина | Date |  | | |
-| head_office_address  | Адрес, по которому находится главный офис | Varchar(40) | | | |
+| head_office_town_nm  | Город в котором находится главный офис | Varchar(40) | | | |
 | head_office_country_nm | Страна, в которой находится главный офис| Varchar(40) |  |  | |
 
-## Clothes in store
+## Clothes_x_store
 | Название | Описание | Тип данных | Ограничение | PK | FK |
 |------------| --------| ------------|------------ | ------------| ------------|
 | store_id | Уникальный идентификатор магазина, в котором есть такая вещь | Bigserial | Not Null | + | Store|
