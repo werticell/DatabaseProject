@@ -5,9 +5,8 @@ INSERT INTO clothes_shops.customer (
                                      customer_patronymic,
                                      birth_dt,
                                      email,
-                                     overall_transactions_amt,
                                      advertising_subscribe_flg)
-VALUES ('Vitya', 'Smirnov', 'Vasilievich', '2001.12.12', 'vasya@ya.ru', 15000, TRUE);
+VALUES ('Vitya', 'Smirnov', 'Vasilievich', '2001.12.12', 'vasya@ya.ru', TRUE);
 
 SELECT * from clothes_shops.customer;
 
@@ -17,36 +16,13 @@ COPY clothes_shops.customer(
                             customer_patronymic,
                             birth_dt,
                             email,
-                            overall_transactions_amt,
                             advertising_subscribe_flg)
 FROM '/private/tmp/customer.csv'
 DELIMITER ','
 CSV HEADER;
 
-/* Check
- SELECT * FROM clothes_shops.customer;
- */
 
 
-/* Insert Into Employee table */
-
-INSERT INTO clothes_shops.employee (birth_dt)
-VALUES ('1990.10.22');
-
-SELECT * FROM clothes_shops.employee;
-
-INSERT INTO clothes_shops.employee_version (
-                                     employee_id,
-                                     valid_from_dttm,
-                                     delivery_point_id,
-                                     salary_amt,
-                                     valid_to_dttm,
-                                     employee_nm,
-                                     employee_surname,
-                                     employee_patronymic,
-                                     email,
-                                     position_nm)
-VALUES (1, '2017.7.13', 'Vasilievich', '2018.3.15', 'vasya@ya.ru', 15000, TRUE);
 
 
 /* Insert Into Brand table */
@@ -153,4 +129,160 @@ CSV HEADER;
 
 SELECT * FROM clothes_shops.clothes_x_store;
 
-/* Insert Into clothes_x_store table */
+
+
+/* Insert Into delivery_point table */
+INSERT INTO clothes_shops.delivery_point (
+                                          store_id,
+                                          street_nm,
+                                          city_nm,
+                                          phone_no)
+VALUES (1,'Pavlov','Moscow', '89107239124'),
+       (1,'Sovetskaya','Moscow', '89156784351'),
+       (1,'Komsomolskaya','Tambov', '89154568912'),
+       (2,'Petrovskaya','Moscow', '89107906431'),
+       (2,'Novokuznetskaya','Moscow', '89159085432'),
+       (2,'Dmitrovskaya','Tambov','89169043212'),
+       (3,'Neglinnaya','Moscow', '89186432890'),
+       (3,'Nikolskyi','Moscow', '89207432178'),
+       (3,'Zapadnaya','Tambov', '89189456321'),
+       (4,'Pokrovkaya','Moscow', '89107439631'),
+       (4,'Volhonksaya','Moscow', '89306457641'),
+       (4,'Agapkina','Tambov', '89809604562'),
+       (5,'Pervomayskay','Moscow', '89179054534'),
+       (5,'Lesnaya','Moscow', '89456037646'),
+       (5,'Avdeeva','Tambov', '89544317841');
+
+SELECT * FROM clothes_shops.delivery_point;
+
+
+
+/* Insert Into Employee table */
+
+INSERT INTO clothes_shops.employee (birth_dt)
+VALUES ('1990.10.22');
+
+INSERT INTO clothes_shops.employee (birth_dt)
+VALUES  ('1987.12.21'),
+        ('1990.1.5'),
+        ('1986.4.17'),
+        ('1984.5.8'),
+        ('1999.10.2'),
+        ('1983.7.11'),
+        ('1982.4.17'),
+        ('1989.4.1'),
+        ('1993.5.17'),
+        ('1988.10.14'),
+        ('1985.11.13'),
+        ('1988.6.9'),
+        ('1980.11.9'),
+        ('1986.7.8'),
+        ('1991.1.12');
+
+SELECT * FROM clothes_shops.employee;
+
+INSERT INTO clothes_shops.employee_version (
+                                     employee_id,
+                                     valid_from_dttm,
+                                     delivery_point_id,
+                                     salary_amt,
+                                     valid_to_dttm,
+                                     employee_nm,
+                                     employee_surname,
+                                     employee_patronymic,
+                                     email,
+                                     position_nm)
+VALUES (1, '2018-10-11 00:00:00', 2, 20000, '5999-01-01 00:00:00',
+        'Sergey', 'Ershov', 'Aleksandrovich', 'ErshovSergey@gmail.com', 'Assistant'),
+       (2, '2019-11-18 00:00:00', 8, 15000, '5999-01-01 00:00:00',
+        'Ivan', 'Osipov', 'Zaharovich', 'OsipovIvan@mail.ru', 'Assistant'),
+        (3, '2019-05-13 00:00:00', 15, 25000, '5999-01-01 00:00:00',
+        'Varvara', 'Popova', 'Maksimovna', 'VarvaraPopova@gmail.com', 'Assistant'),
+       (4, '2018-12-12 00:00:00', 9, 22000, '5999-01-01 00:00:00',
+        'Yulia', 'Bogdanova', 'Sergeevna', 'YuliaBogdanova@gmail.com', 'Assistant'),
+       (5, '2019-03-24 00:00:00', 3, 21000, '5999-01-01 00:00:00',
+        'Lev', 'Belov', 'Sergeevich', 'LevBelov@mail.ru', 'Assistant'),
+       (6, '2019-06-18 00:00:00', 4, 21000, '5999-01-01 00:00:00',
+        'Oleg', 'Semenov', 'Petrovich', 'OlegSemenov@ya.ru', 'Assistant'),
+       (7, '2019-04-07 00:00:00', 1, 17000, '5999-01-01 00:00:00',
+        'Eva', 'Lazareva', 'Alexeyevna', 'EvaLazareva@ya.ru', 'Assistant'),
+       (8, '2019-10-06 00:00:00', 5, 19000, '5999-01-01 00:00:00',
+        'Tatyana', 'Sokolova', 'Zaharovna', 'TatyanaSokolova@ya.ru', 'Assistant'),
+
+       (9, '2018-12-25 00:00:00', 6, 21500, '5999-01-01 00:00:00',
+        'Violetta', 'Semenova', 'Davidovna', 'SemenovaVioletta@gmail.com', 'Assistant'),
+       (10, '2018-05-13 00:00:00', 7, 12000, '5999-01-01 00:00:00',
+        'Georgiy', 'Sidorov', 'Alexeyevich', 'SidorovGeorgiy@mail.ru', 'Assistant'),
+        (11, '2018-08-19 00:00:00', 14, 30000, '5999-01-01 00:00:00',
+        'Philipp', 'Popov', 'Ivanovich', 'PopovPhilipp@gmail.com', 'Assistant'),
+       (12, '2019-03-17 00:00:00', 13, 28000, '5999-01-01 00:00:00',
+        'Pavel', 'Lebedev', 'Zaharovich', 'LebedevPavel@gmail.com', 'Assistant'),
+       (13, '2019-11-19 00:00:00', 13, 16000, '5999-01-01 00:00:00',
+        'Nikita', 'Osipov', 'Aleksandrovich', 'OsipovNikita@mail.ru', 'Assistant'),
+       /* versioned last position changed salaries increased */
+       (14, '2018-11-15 00:00:00', 11, 19000, '2019-05-14 00:00:00',
+        'Petr', 'Sidorov', 'Zaharovich', 'SidorovPetr@ya.ru', 'Assistant'),
+       (15, '2018-2-18 00:00:00', 12, 27000, '2019-07-24 00:00:00',
+        'Elena', 'Semenova', 'Vasilievna', 'SemenovaElena@ya.ru', 'Assistant'),
+       (16, '2018-3-11 00:00:00', 13, 26000, '2019-04-03 00:00:00',
+        'Oksana', 'Lebedeva', 'Zaharovna', 'LebedevaOksana@ya.ru', 'Assistant'),
+
+       (14, '2019-05-14 00:00:00', 11, 31000, '5999-01-01 00:00:00',
+        'Petr', 'Sidorov', 'Zaharovich', 'SidorovPetr@ya.ru', 'HeadAssistant'),
+       (15, '2019-07-24 00:00:00', 12, 35000, '5999-01-01 00:00:00',
+        'Elena', 'Semenova', 'Vasilievna', 'SemenovaElena@ya.ru', 'HeadAssistant'),
+       (16, '2019-04-03 00:00:00', 13, 37000, '5999-01-01 00:00:00',
+        'Oksana', 'Lebedeva', 'Zaharovna', 'LebedevaOksana@ya.ru', 'HeadAssistant');
+
+
+SELECT * FROM clothes_shops.employee_version;
+
+
+
+
+/* Insert Into Order table */
+INSERT INTO clothes_shops.order (
+                                 store_id,
+                                 customer_id,
+                                 delivery_dttm,
+                                 purchase_dttm,
+                                 delivery_point_id,
+                                 buyout_flg)
+VALUES (1, 5, '2019-05-14 00:00:00', '2019-05-1 00:00:00', 9, TRUE);
+
+
+
+COPY clothes_shops.order (
+                                 store_id,
+                                 customer_id,
+                                 delivery_dttm,
+                                 purchase_dttm,
+                                 delivery_point_id,
+                                 buyout_flg)
+FROM '/private/tmp/order.csv'
+DELIMITER ','
+CSV HEADER;
+
+SELECT * FROM clothes_shops.order;
+
+
+/* Insert Into Order_x_clothes table */
+
+SELECT * FROM clothes_shops.clothes;
+
+INSERT INTO clothes_shops.clothes_x_order (
+                                           order_id,
+                                           clothes_id,
+                                           item_count)
+VALUES (1, 8, 1);
+
+
+COPY clothes_shops.clothes_x_order (
+                                 order_id,
+                                 clothes_id,
+                                 item_count)
+FROM '/private/tmp/order_x_clothes.txt'
+DELIMITER ','
+CSV HEADER;
+
+SELECT * FROM clothes_shops.clothes_x_order;

@@ -7,9 +7,15 @@ CREATE TABLE IF NOT EXISTS clothes_shops.customer (
   customer_patronymic        VARCHAR(40),
   birth_dt                   DATE,
   email                      VARCHAR(50) NOT NULL,
-  overall_transactions_amt   BIGINT,
   advertising_subscribe_flg  BOOLEAN
 );
+
+/* We don't need overall_transaction_amt we can find it ourselves
+
+ALTER TABLE clothes_shops.customer DROP COLUMN overall_transactions_amt;
+SELECT * FROM clothes_shops.customer;
+
+   */
 
 CREATE TABLE IF NOT EXISTS clothes_shops.brand (
   brand_id                  BIGSERIAL PRIMARY KEY,
@@ -40,7 +46,7 @@ CREATE TABLE IF NOT EXISTS clothes_shops.store (
   store_id                 BIGSERIAL PRIMARY KEY,
   store_nm                 VARCHAR(60) NOT NULL,
   create_dt                DATE,
-  head_office_address      VARCHAR(40),
+  head_office_town_nm      VARCHAR(40),
   head_office_country_nm   VARCHAR(40)
 );
 
@@ -55,10 +61,11 @@ SELECT * from clothes_shops.store;
 CREATE TABLE IF NOT EXISTS clothes_shops.delivery_point (
   delivery_point_id      BIGSERIAL PRIMARY KEY,
   store_id               BIGINT REFERENCES clothes_shops.store(store_id),
-  address                VARCHAR(40),
-  city                   VARCHAR(40),
-  phone_no               INT CHECK ( phone_no > 0 )
+  street_nm              VARCHAR(40),
+  city_nm                VARCHAR(40),
+  phone_no               VARCHAR(15)
 );
+
 
 
 CREATE TABLE IF NOT EXISTS clothes_shops.clothes_x_store (
@@ -90,11 +97,12 @@ CREATE TABLE IF NOT EXISTS clothes_shops.employee_version (
 
 CREATE TABLE IF NOT EXISTS clothes_shops.order (
   order_id           BIGSERIAL PRIMARY KEY,
-  employee_id        BIGINT REFERENCES clothes_shops.employee(employee_id),
   store_id           BIGINT REFERENCES clothes_shops.store(store_id),
   customer_id        BIGINT REFERENCES clothes_shops.customer(customer_id),
+  delivery_point_id  BIGINT REFERENCES clothes_shops.delivery_point(delivery_point_id),
   delivery_dttm      TIMESTAMP,
-  purchase_dttm      TIMESTAMP
+  purchase_dttm      TIMESTAMP,
+  buyout_flg         BOOLEAN
 );
 
 
@@ -105,4 +113,5 @@ CREATE TABLE IF NOT EXISTS clothes_shops.clothes_x_order (
   item_count        INT CHECK ( item_count >= 0 ),
   CONSTRAINT PK_clothes_x_order PRIMARY KEY (order_id, clothes_id)
 );
+
 
